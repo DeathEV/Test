@@ -1,5 +1,5 @@
 <template>
-  <q-layout view="lHr lpR fFf" v-if="isCheck">
+  <q-layout view="lHr lpR fFf" class="bg-grey-2" v-if="isCheck">
 
     <q-header bordered class="bg-white text-black">
       <q-toolbar>
@@ -8,7 +8,7 @@
     </q-header>
 
     <q-drawer show-if-above v-model="leftDrawerOpen" side="left" bordered>
-      <LeftLayout/>
+      <LeftLayout :on-click-right="toggleRightDrawer"/>
     </q-drawer>
 
     <q-drawer show-if-above v-model="rightDrawerOpen" side="right" bordered>
@@ -60,11 +60,13 @@
         leftDrawerOpen,
         toggleLeftDrawer () {
           leftDrawerOpen.value = !leftDrawerOpen.value
+          rightDrawerOpen.value = false
         },
 
         rightDrawerOpen,
         toggleRightDrawer () {
           rightDrawerOpen.value = !rightDrawerOpen.value
+          leftDrawerOpen.value = false
         }
       }
     }

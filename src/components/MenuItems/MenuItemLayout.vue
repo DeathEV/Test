@@ -13,7 +13,7 @@
   export default defineComponent({
     props: {
       label: {type: String, required: true},
-      link: {type: String, required: true},
+      link: String,
       icon: String,
     },
   })

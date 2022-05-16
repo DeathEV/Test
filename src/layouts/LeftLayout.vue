@@ -12,7 +12,8 @@
       <MenuItemLayout label="DashBoard" icon="fa-solid fa-house" link="/"/>
     </MenuItemsGroup>
     <q-separator spaced />
-    <MenuItemLayout label="Settings" icon="settings" link="/"/>
+<!--    settings-->
+    <MenuItemLayout label="Settings" icon="settings" :onClick="onClickRight"/>
 <!--    logout-->
     <q-separator spaced />
     <q-item clickable v-ripple active-class="my-menu-link">
@@ -30,6 +31,7 @@
   import MenuItemsGroup from "components/MenuItems/MenuItemsGroup";
 
   export default {
+    props: {onClickRight: Function},
     components: {MenuItemLayout, MenuItemsGroup},
     setup () {
       const userRole = ref('admin');
