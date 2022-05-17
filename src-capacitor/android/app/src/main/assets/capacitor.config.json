@@ -3,5 +3,8 @@
   "appName": "Nghe Nong Viet",
   "bundledWebRuntime": false,
   "npmClient": "npm",
-  "webDir": "www"
+  "webDir": "www",
+  "server": {
+    "url": "http://192.168.2.10:5192"
+  }
 }
