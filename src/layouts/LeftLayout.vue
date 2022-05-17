@@ -16,7 +16,7 @@
     <MenuItemLayout label="Settings" icon="settings" :onClick="onClickRight"/>
 <!--    logout-->
     <q-separator spaced />
-    <q-item clickable v-ripple active-class="my-menu-link">
+    <q-item clickable v-ripple active-class="my-menu-link" :onclick="logout">
       <q-item-section avatar>
         <q-icon name="fa-solid fa-arrow-right-from-bracket" />
       </q-item-section>
@@ -29,15 +29,25 @@
   import { ref } from 'vue'
   import MenuItemLayout from "components/MenuItems/MenuItemLayout";
   import MenuItemsGroup from "components/MenuItems/MenuItemsGroup";
+  import {useRouter} from "vue-router";
 
   export default {
     props: {onClickRight: Function},
     components: {MenuItemLayout, MenuItemsGroup},
     setup () {
-      const userRole = ref('admin');
+      const router = useRouter()
+
+      const userRole = ref('admin')
+
+      const logout = function () {
+        localStorage.removeItem('token')
+        router.push({ path: '/login' })
+      }
+
       return {
         link: ref('dashboard'),
         userRole,
+        logout
       }
     }
   }

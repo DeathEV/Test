@@ -5,7 +5,7 @@
       <img src="~assets/login.svg" class="responsive" alt="login-image">
     </div>
     <div v-bind:class="{'justify-center': $q.screen.md || $q.screen.sm ||$q.screen.xs}"
-         class="col-12 col-md-6 flex content-center">
+         class="col-12 col-md-6 flex content-center q-mt-xl">
       <q-card v-bind:style="$q.screen.lt.sm ? {'width': '90%'} : {'width': '60%'}">
         <q-card-section>
           <q-avatar size="103px" class="absolute-center shadow-10">
@@ -80,7 +80,7 @@
             'password': password.value
           }
           const userData = await userApi.userLogin(query)
-          localStorage.setItem('token', userData.user.token)
+          localStorage.setItem('token', userData.access_token)
           router.push({ path: '/' })
         } catch (e) {
           $q.notify({icon:'warning', message: 'Đăng nhập thất bại.', color: 'red', position: 'top-right',})

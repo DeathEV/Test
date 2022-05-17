@@ -11,6 +11,10 @@
     "test": "echo \"No test specified\" && exit 0"
   },
   "dependencies": {
+    "@capacitor/android": "^3.5.1",
+    "@capacitor/cli": "^3.5.1",
+    "@capacitor/core": "^3.5.1",
+    "@capacitor/ios": "^3.5.1",
     "@quasar/extras": "^1.0.0",
     "axios": "^0.27.2",
     "core-js": "^3.6.5",

@@ -2,10 +2,8 @@ import axiosClient from "./AxiosConfig/axiosClient";
 
 const userApi = {
     userLogin: (query) => {
-        const url = "/users/login";
-        return axiosClient.post(url, {
-            "user": query
-        });
+        const url = "/login";
+        return axiosClient.post(url, query);
     },
     userLoginToken: (token) => {
         const url = "/login";
