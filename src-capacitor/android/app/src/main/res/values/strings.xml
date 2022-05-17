@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Nghe Nong Viet</string>
+    <string name="title_activity_main">Nghe Nong Viet</string>
+    <string name="package_name">nghenongviet.app</string>
+    <string name="custom_url_scheme">nghenongviet.app</string>
+</resources>

@@ -1,0 +1,7 @@
+{
+  "appId": "nghenongviet.app",
+  "appName": "Nghe Nong Viet",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www"
+}
