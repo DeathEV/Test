@@ -23,7 +23,7 @@
               <q-item clickable v-close-popup>
                 <q-item-section avatar>
                   <q-avatar square>
-                    <img src="~assets/avatar.svg"/>
+                    <img src="~assets/pond.jpg"/>
                   </q-avatar>
                 </q-item-section>
                 <q-item-section>
@@ -83,7 +83,7 @@
               <q-item-label caption>Mã ao/bể</q-item-label>
             </q-item-section>
             <q-item-section>
-              <q-btn color="light-blue-8" label="Xem" class="q-px-md"/>
+              <q-btn color="light-blue-8" label="Xem" class="q-px-md" @click="btnLink(p.id)"/>
             </q-item-section>
           </q-item>
           <q-separator/>
@@ -112,9 +112,12 @@
 import { defineComponent, onMounted, ref, watch } from 'vue'
 import adoptFishApi from "src/Api/Store/adoptFishApi";
 import pondApi from "src/Api/Store/pondApi";
+import {useRouter} from "vue-router";
 
 export default defineComponent({
   setup(){
+    const router = useRouter()
+
     const listDataAdopt = ref([])
     const listDataPond = ref([])
     const filterDataPond = ref([])
@@ -128,6 +131,9 @@ export default defineComponent({
 
     onMounted(()=>{
       getData()
+      if(localStorage.getItem('pond_detail_id')){
+        localStorage.removeItem('pond_detail_id')
+      }
     })
 
     const resetList = function () {
@@ -148,12 +154,18 @@ export default defineComponent({
       } else filterDataPond.value = listDataPond.value
     })
 
+    const btnLink = function (id) {
+      localStorage.setItem('pond_detail_id', id)
+      router.push({ path: '/pond-detail' })
+    }
+
     return {
       listDataAdopt,
       listDataPond,
       filterDataPond,
       searchValue,
       onChangeValue,
+      btnLink,
       resetList
     }
   }

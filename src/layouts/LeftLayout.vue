@@ -1,10 +1,11 @@
 <template>
   <q-icon
-    class="q-pa-md"
+    class="q-pa-sm"
     name="fa-brands fa-facebook-square"
     size="lg"
     color="primary"
   />
+  <span class="q-mx-md text-h6 text-primary">Nghề nông việt</span>
   <q-list bordered class="rounded-borders text-primary">
 <!--    menu-->
     <MenuItemLayout label="DashBoard" icon="fa-solid fa-house" link="/"/>
