@@ -12,7 +12,7 @@
         <q-space></q-space>
         <q-separator vertical/>
         <q-btn dense round flat class="q-mx-lg" icon="far fa-bell">
-          <q-badge color="green">4</q-badge>
+          <q-badge color="primary">4</q-badge>
         </q-btn>
         <q-separator vertical/>
         <q-btn dense round flat class="q-mx-md" icon="qr_code_scanner">

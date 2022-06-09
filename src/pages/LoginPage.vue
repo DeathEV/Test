@@ -35,7 +35,6 @@
 
 <script>
   import {ref} from "vue"
-  import {useRouter} from "vue-router"
   import userApi from "src/Api/userApi"
   import { useQuasar } from 'quasar'
 
@@ -44,8 +43,6 @@
       const $q = useQuasar()
       const email = ref('')
       const password = ref('')
-
-      const router = useRouter()
 
       function validatePassword(password) {
         const re =
@@ -81,7 +78,8 @@
           }
           const userData = await userApi.userLogin(query)
           localStorage.setItem('token', userData.access_token)
-          router.push({ path: '/' })
+          location.reload()
+          location.href = '/'
         } catch (e) {
           $q.notify({icon:'warning', message: 'Đăng nhập thất bại.', color: 'red', position: 'top-right',})
         }

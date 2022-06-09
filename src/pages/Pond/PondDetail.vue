@@ -26,7 +26,7 @@
                 <q-item-label class="text-center text-h5 text-uppercase"><strong>Hình ảnh</strong></q-item-label>
                 <q-item-label class="text-center" caption>
                   Số lượng
-                  <q-badge color="green">{{imgList.length || 0}}</q-badge>
+                  <q-badge color="primary">{{imgList.length || 0}}</q-badge>
                 </q-item-label>
               </q-item-section>
             </q-item>
@@ -36,7 +36,7 @@
             <q-card clickable v-close-popup v-for="(p, index) in imgList" :key="index">
               <q-img
                 class="q-my-sm"
-                :src="p.pond_images.file_url"
+                :src="p.url"
                 spinner-color="white"
                 style="height: 140px; max-width: 150px"
               />
@@ -125,11 +125,11 @@
       const getDetail = async function(){
         const detail = await pondApi.getPondDetail(parseInt(pond_id.value))
         dataDetail.value = detail
-        pondType.value = detail.pond_categorizes
-        adoptDetail.value = detail.adopt_fish_areas
-        address3Detail.value = detail.adopt_fish_areas.address_level_1.address_level_2.address_level_3
-        address2Detail.value = detail.adopt_fish_areas.address_level_1.address_level_2
-        address1Detail.value = detail.adopt_fish_areas.address_level_1
+        pondType.value = detail.pond_categorize
+        adoptDetail.value = detail.adopt_area
+        address3Detail.value = detail.adopt_area.address_level_1.address_level_2.address_level_3
+        address2Detail.value = detail.adopt_area.address_level_1.address_level_2
+        address1Detail.value = detail.adopt_area.address_level_1
       }
 
       const getImageList= async function(){

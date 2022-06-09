@@ -30,19 +30,17 @@
   import { ref } from 'vue'
   import MenuItemLayout from "components/MenuItems/MenuItemLayout";
   import MenuItemsGroup from "components/MenuItems/MenuItemsGroup";
-  import {useRouter} from "vue-router";
 
   export default {
     props: {onClickRight: Function},
     components: {MenuItemLayout, MenuItemsGroup},
     setup () {
-      const router = useRouter()
-
       const userRole = ref('admin')
 
       const logout = function () {
         localStorage.removeItem('token')
-        router.push({ path: '/login' })
+        location.href = '/#/login'
+        location.reload()
       }
 
       return {

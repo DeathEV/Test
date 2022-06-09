@@ -12,7 +12,7 @@
                 <q-item-label class="text-center text-h4 text-uppercase"><strong>Vùng nuôi</strong></q-item-label>
                 <q-item-label class="text-center" caption>
                   Số lượng
-                  <q-badge color="green">{{listDataAdopt.length}}</q-badge>
+                  <q-badge color="primary">{{listDataAdopt.length}}</q-badge>
                 </q-item-label>
               </q-item-section>
             </q-item>
@@ -31,13 +31,13 @@
                   <q-item-label caption>Chủ vùng nuôi</q-item-label>
                 </q-item-section>
                 <q-item-section>
-                  <q-btn color="light-blue-8" label="Xem" class="q-px-md"/>
+                  <q-btn color="primary" label="Xem" @click="searchPondByAdopt(p.id)" class="q-px-md"/>
                 </q-item-section>
               </q-item>
               <q-separator/>
               <q-item>
                 <q-item-section>
-                  <q-item-label class="text-center"><strong>{{p.adopt_types.name}}</strong></q-item-label>
+                  <q-item-label class="text-center"><strong>{{p.adopt_type.name}}</strong></q-item-label>
                   <q-item-label class="text-center" caption>Loại vùng nuôi</q-item-label>
                 </q-item-section>
                 <q-item-section>
@@ -45,7 +45,11 @@
                   <q-item-label class="text-center" caption>Mã vùng nuôi</q-item-label>
                 </q-item-section>
                 <q-item-section>
-                  <q-item-label class="text-center"><strong>8</strong></q-item-label>
+                  <q-item-label class="text-center">
+                    <strong>
+                      {{listDataPond.filter((item) => item.adopt_area_id === p.id).length}}
+                    </strong>
+                  </q-item-label>
                   <q-item-label class="text-center" caption>Tổng ao/bể</q-item-label>
                 </q-item-section>
               </q-item>
@@ -61,7 +65,7 @@
               <q-item-label class="text-center text-h4 text-uppercase"><strong>Ao/Bể</strong></q-item-label>
               <q-item-label class="text-center" caption>
                 Số lượng
-                <q-badge color="green">{{filterDataPond.length}}</q-badge>
+                <q-badge color="primary">{{filterDataPond.length}}</q-badge>
               </q-item-label>
               <q-item-section>
                 <q-input borderless label="Tìm kiếm mã ao/bể" :onchange="onChangeValue" input-class="text-left" class="q-ml-md">
@@ -83,13 +87,13 @@
               <q-item-label caption>Mã ao/bể</q-item-label>
             </q-item-section>
             <q-item-section>
-              <q-btn color="light-blue-8" label="Xem" class="q-px-md" @click="btnLink(p.id)"/>
+              <q-btn color="primary" label="Xem" class="q-px-md" @click="btnLink(p.id)"/>
             </q-item-section>
           </q-item>
           <q-separator/>
           <q-item>
             <q-item-section>
-              <q-item-label class="text-center"><strong>{{p.pond_categorizes.name}}</strong></q-item-label>
+              <q-item-label class="text-center"><strong>{{p.pond_categorize.name}}</strong></q-item-label>
               <q-item-label class="text-center" caption>Loại ao/bể</q-item-label>
             </q-item-section>
             <q-item-section>
@@ -140,6 +144,19 @@ export default defineComponent({
       filterDataPond.value = listDataPond.value
     }
 
+    const adoptID = ref('')
+    const searchPondByAdopt = function (id) {
+      adoptID.value = id
+    }
+    watch(adoptID, (newValue)=>{
+      if(newValue){
+        const code = listDataPond.value.filter((item) => {
+          return item.adopt_area_id === newValue
+        })
+        filterDataPond.value = code
+      } else filterDataPond.value = listDataPond.value
+    })
+
     const searchValue = ref('')
     const onChangeValue = function (e) {
       searchValue.value = e.target.value
@@ -165,6 +182,7 @@ export default defineComponent({
       filterDataPond,
       searchValue,
       onChangeValue,
+      searchPondByAdopt,
       btnLink,
       resetList
     }
